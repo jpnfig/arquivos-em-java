@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 import entities.Product;
 
@@ -17,8 +18,11 @@ public class Program07 {
 	public static void main(String[] args) {
 		
 		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
 		
-		String strPath = "C:\\temp\\in.csv";
+		System.out.println("Enter file path: ");
+		String strPath = sc.nextLine();
+//		String strPath = "C:\\temp\\in.csv";
 		
 		File path = new File(strPath);
 		
@@ -52,14 +56,18 @@ public class Program07 {
 						bw.write(lists.getName() + ',' + String.format("%.2f", lists.amount()));
 						bw.newLine();
 					}
+					
+					System.out.println(trgPath + " CREATED!");
+
 				}
 				catch(IOException e) {
-					System.out.println("Error: " + e.getMessage());
+					System.out.println("Error writing file: " + e.getMessage());
 				}
 			}			
 		}
 		catch(IOException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("Error reading file: " + e.getMessage());
 		}
+		sc.close();
 	}
 }
